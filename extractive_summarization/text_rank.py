@@ -9,11 +9,6 @@ from work_with_stories import StoriesCollection
 import pytextrank
 
 def parse_next_doc(corpus, doc_id):
-    """
-    parse one document to prep for TextRank
-    """
-    global DEBUG
-
     base_idx = 0
 
     for graf_text in pytextrank.filter_quotes(corpus, is_email=False):
