@@ -37,11 +37,7 @@ class StoriesCollection:
         ann = self.process_ann(text[story_end:])
         return (lines, ann)        
 
-    def get_story(self, id_story):
-        #ileObj = codecs.open( "someFilePath", "r", "utf_8_sig" )
-        #text = fileObj.read() # или читайте по строке
-        #fileObj.close()
-        
+    def get_story(self, id_story):       
         with codecs.open(self.dir + "\\" + id_story, "r", "utf_8_sig") as file:
             text = file.read()
             return self.divide_into_parts(text)
@@ -50,9 +46,6 @@ class StoriesCollection:
         return self.ids
     
     def get_paragraphs(self, id_story):
-        """
-        segment the raw text into paragraphs
-        """
         (lines, ann) = self.get_story(id_story)
         
         graf = []
@@ -118,3 +111,21 @@ class StoriesCollection:
             self.cycle = False
             return True
         return self.cycle
+    
+    def remove_empry_strings(self):
+        ids = self.get_list_of_ids()
+        for cur_id in ids:
+            lines = []
+            with codecs.open(self.summ_dir + '\\' + cur_id, 'r', 'utf8') as reader:
+                lines.extend(reader.readlines())
+            with codecs.open(self.summ_dir + '\\' + cur_id, 'w', 'utf8') as writer:
+                for line in lines:
+                    if line != '\n':
+                        writer.write(line)
+                        
+    def write_summaries(self):
+        ids = self.get_list_of_ids()
+        for cur_id in ids:
+            story, ann = self.get_story(cur_id)
+            with codecs.open(self.summ_dir + '\\' + cur_id, 'w+', 'utf8') as writer:
+                writer.write(ann)
