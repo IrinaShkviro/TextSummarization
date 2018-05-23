@@ -44,11 +44,11 @@ def calc_rouge(data_path, log_path, postfix, method):
 def calc_rouge_1(data_path, log_path):
     calc_rouge(data_path, log_path, '_rouge_1.txt', rouge_1_doc)
                 
-def calc_rouge_2_abstract(data_path, log_path):
+def calc_rouge_2(data_path, log_path):
     calc_rouge(data_path, log_path, '_rouge_2.txt', rouge_2_doc)
                 
-def calc_rouge_s_abstract(data_path, log_path):
+def calc_rouge_s(data_path, log_path):
     calc_rouge(data_path, log_path, '_rouge_s.txt', rouge_s_doc)
                 
-def calc_rouge_l_abstract(data_path, log_path):
+def calc_rouge_l(data_path, log_path):
     calc_rouge(data_path, log_path, '_rouge_l.txt', Rouge_L.rouge_l)
