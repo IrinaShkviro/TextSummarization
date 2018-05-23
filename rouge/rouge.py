@@ -8,8 +8,6 @@ import numpy as np
 from collections import defaultdict
 from itertools import chain
 
-
-
 def calc_dict(sents):
     word_count_dict = defaultdict(int)
     for word in re.split('\W+', sents):
@@ -139,7 +137,9 @@ class Rouge_L:
         return mask_x
 
     @staticmethod
-    def rouge_l(cand_sents, ref_sents):
+    def rouge_l(cand_sent, ref_sent):
+        cand_sents = [cand_sent]
+        ref_sents = [ref_sent]
         lcs_scores = 0.0
         cand_unigrams = get_unigram_count(chain(*cand_sents))
         ref_unigrams = get_unigram_count(chain(*ref_sents))
